@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Conversor de Moedas</title>
+    <script>
+        function receber()
+        {document.getElementById('valorB').value = document.getElementById('valorA').value;}
+    </script>
+    <link rel="stylesheet" href="estilos.css"/>
+</head>
+<body>
+    <h1 id="titulo">Conversor de Moedas</h1>
+
+    <div class="container">
+        <form action="/converter" method="post" role="form" th:object="${formularioA}">
+            <fieldset>
+                <label>
+                    <input class="entrada" type="text"  id="valorA" name="valorA"  th:field="*{valor1}"  onkeyup="receber()"/>
+                    <label for="valorB"></label>
+                </label>
+                <label>
+                    <select>
+                        <option selected disabled >Escolha a Moeda</option>
+                        <option>Real(BRL)</option>
+                        <option>Dolar(USD)</option>
+                    </select>
+                </label>
+            </fieldset>
+        </form>
+        <form action="/converter2" method="post" role="form" th:object="${formularioB}">
+            <fieldset>
+            <input class="entrada" id="valorB" th:field="*{valor2}" type="number"/>
+                <label>
+                <select>
+                    <option class="escolha" selected disabled >Escolha a Moeda</option>
+                    <option>Real(BRL)</option>
+                    <option>Dolar (USD)</option>
+                </select>
+                </label>
+            </fieldset>
+        </form>
+    </div>
+
+
+</body>
+</html>
