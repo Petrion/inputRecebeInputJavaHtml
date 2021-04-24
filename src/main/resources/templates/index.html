@@ -5,45 +5,37 @@
 
     <meta charset="UTF-8">
     <title>Conversor de Moedas</title>
-    <script>
-        function receber()
-        {document.getElementById('valorB').value = document.getElementById('valorA').value;}
-    </script>
     <link rel="stylesheet" href="estilos.css"/>
 </head>
-<body>
+<body class="bg">
+
     <h1 id="titulo">Conversor de Moedas</h1>
 
-    <div class="container">
-        <form action="/converter" method="post" role="form" th:object="${formularioA}">
-            <fieldset>
-                <label>
-                    <input class="entrada" type="text"  id="valorA" name="valorA"  th:field="*{valor1}"  onkeyup="receber()"/>
-                    <label for="valorB"></label>
-                </label>
-                <label>
-                    <select>
-                        <option selected disabled >Escolha a Moeda</option>
-                        <option>Real(BRL)</option>
-                        <option>Dolar(USD)</option>
-                    </select>
-                </label>
-            </fieldset>
-        </form>
-        <form action="/converter2" method="post" role="form" th:object="${formularioB}">
-            <fieldset>
-            <input class="entrada" id="valorB" th:field="*{valor2}" type="number"/>
-                <label>
-                <select>
-                    <option class="escolha" selected disabled >Escolha a Moeda</option>
-                    <option>Real(BRL)</option>
-                    <option>Dolar (USD)</option>
-                </select>
-                </label>
-            </fieldset>
-        </form>
-    </div>
 
+    <div class="container">
+        <fieldset class="agrupamento">
+            <form action="/converter" method="post" th:object="${elementos}">
+                <fieldset>
+                    <div>
+                        <input class="valor" min="0" type="number" th:field="*{moedaB}"/>
+                        <select th:field="*{moedaA}">
+                            <option value="BRL-USD"  >Real(BRL) para Dolar(USD)</option>
+                            <option value="USD-BRL"  >Dolar(USD) para Real(BRL)</option>
+                        </select>
+                        <input class="botao" type="submit" value="Converter" />
+                    </div>
+                </fieldset>
+            </form>
+        </fieldset>
+    </div>
+   <fieldset class="resultado">
+        <div class="mensagem">
+            <p id="subtitulo">Resultado da conversão:</p>
+            <p id="msg" th:text="${mensagem}"></p>
+        </div>
+   </fieldset>
 
 </body>
 </html>
+
+
